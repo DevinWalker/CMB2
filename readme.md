@@ -1,30 +1,31 @@
 # CMB2
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/WebDevStudios/CMB2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Wordpress plugin](http://img.shields.io/wordpress/plugin/v/cmb2.svg?style=flat)]()
-[![Wordpress](http://img.shields.io/wordpress/plugin/dt/cmb2.svg?style=flat)]()
-[![Wordpress rating](http://img.shields.io/wordpress/plugin/r/cmb2.svg?style=flat)]()
-[![Travis](http://img.shields.io/travis/WebDevStudios/CMB2.svg?style=flat)]()
-[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/WebDevStudios/CMB2.svg?style=flat)]()
-[![Scrutinizer Coverage](https://scrutinizer-ci.com/g/WebDevStudios/CMB2/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/WebDevStudios/CMB2/?branch=master)
+[![Travis](http://img.shields.io/travis/WebDevStudios/CMB2.svg?style=flat)](https://travis-ci.org/WebDevStudios/CMB2)
+[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/WebDevStudios/CMB2.svg?style=flat)](https://scrutinizer-ci.com/g/WebDevStudios/CMB2/?branch=trunk)
+[![Scrutinizer Coverage](https://scrutinizer-ci.com/g/WebDevStudios/CMB2/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/WebDevStudios/CMB2/?branch=trunk)
 [![Project Stats](https://www.openhub.net/p/CMB2/widgets/project_thin_badge.gif)](https://www.openhub.net/p/CMB2)
 
-**Contributors:**      [webdevstudios](https://github.com/webdevstudios), [jtsternberg](https://github.com/jtsternberg), [gregrickaby](https://github.com/gregrickaby), [tw2113](https://github.com/tw2113), [patrickgarman](https://github.com/pmgarman)  
+**Contributors:**      [webdevstudios](https://github.com/webdevstudios), [jtsternberg](https://github.com/jtsternberg), [gregrickaby](https://github.com/gregrickaby), [tw2113](https://github.com/tw2113), [patrickgarman](https://github.com/pmgarman), [JPry](https://github.com/JPry)
 **Donate link:**       [http://webdevstudios.com](http://webdevstudios.com)  
 **Tags:**              metaboxes, forms, fields, options, settings  
 **Requires at least:** 3.8.0  
-**Tested up to:**      4.1.0  
-**Stable tag:**        2.0.2  
+**Tested up to:**      4.2.2  
+**Stable tag:**        2.0.8  
 **License:**           GPLv2 or later  
 **License URI:**       [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)  
+
+[![Wordpress plugin](http://img.shields.io/wordpress/plugin/v/cmb2.svg?style=flat)](https://wordpress.org/plugins/cmb2/)
+[![Wordpress](http://img.shields.io/wordpress/plugin/dt/cmb2.svg?style=flat)](https://wordpress.org/plugins/cmb2/)
+[![Wordpress rating](http://img.shields.io/wordpress/plugin/r/cmb2.svg?style=flat)](https://wordpress.org/plugins/cmb2/)
 
 Complete contributors list found here: [github.com/WebDevStudios/CMB2/graphs/contributors](https://github.com/WebDevStudios/CMB2/graphs/contributors)
 
 ## Description
 
-CMB2 is a metabox, custom fields, and forms library for WordPress that will blow your mind.
+CMB2 is a developer's toolkit for building metaboxes, custom fields, and forms for WordPress that will blow your mind.
 
-**[Plugin available on wordpress.org](http://wordpress.org/plugins/cmb2/)**
+**[Download plugin on wordpress.org](http://wordpress.org/plugins/cmb2/)**
 
 CMB2 is a complete rewrite of [Custom Metaboxes and Fields for WordPress](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress). To get started, please follow the examples in the included `example-functions.php` file and have a look at the [basic usage instructions](https://github.com/WebDevStudios/CMB2/wiki/Basic-Usage).
 
@@ -59,12 +60,17 @@ You can see a list of available field types [here](https://github.com/WebDevStud
 	> 1. The `pw_select field` acts much like the default select field. However, it adds typeahead-style search allowing you to quickly make a selection from a large list
 	> 2. The `pw_multiselect` field allows you to select multiple values with typeahead-style search. The values can be dragged and dropped to reorder
 
-* [CMB2 Field Type: Gallery](https://github.com/mustardBees/cmb-field-gallery) from [mustardBees](https://github.com/mustardBees): Adds a WordPress gallery field.
 * [CMB Field Type: Slider](https://github.com/qmatt/cmb2-field-slider) from [mattkrupnik](https://github.com/mattkrupnik/): Adds a jQuery UI Slider field.
+* [WDS CMB2 Date Range Field](https://github.com/WebDevStudios/CMB2-Date-Range-Field) from [dustyf](https://github.com/dustyf) of [WebDevStudios](https://github.com/WebDevStudios): Adds a date range field.
+* [CMB2 Remote Image Select](https://github.com/WebDevStudios/CMB2-Remote-Image-Select-Field) from [JayWood](https://github.com/JayWood) of [WebDevStudios](https://github.com/WebDevStudios): Allows users to enter a URL in a text field and select a single image for use in post meta. Similar to Facebook's featured image selector.
 
 #### Other Helpful Resources
 * [Taxonomy_MetaData](https://github.com/jtsternberg/Taxonomy_MetaData#to-use-taxonomy_metadata-with-custom-metaboxes-and-fields): WordPress Helper Class for saving pseudo-metadata for taxonomy terms. Includes an extended class for using CMB to generate the actual form fields.
+* [CMB2 Taxonomy](https://github.com/jcchavezs/cmb2-taxonomy) from [jcchavezs](https://github.com/jcchavezs/): Similar to Taxonomy_MetaData, but uses a custom table for taxonomy term meta storage.
 * [WordPress Shortcode Button](https://github.com/jtsternberg/Shortcode_Button): Uses CMB2 fields to generate fields for shortcode input modals.
+* [WDS-Simple-Page-Builder](https://github.com/WebDevStudios/WDS-Simple-Page-Builder): Uses existing template parts in the currently-active theme to build a customized page with rearrangeable elements. Built with CMB2.
+* [CMB2 Example Theme](https://github.com/WebDevStudios/CMB2-Example-Theme): Demonstrate how to include CMB2 in your theme, as well as some cool tips and tricks.
+* [facetwp-cmb2](https://github.com/FacetWP/facetwp-cmb2): FacetWP integration with CMB2.
 
 ## Contribution
 All contributions welcome. If you would like to submit a pull request, please check out the [trunk branch](https://github.com/WebDevStudios/CMB2/tree/trunk) and pull request against it. Please read the [CONTRIBUTING](https://github.com/WebDevStudios/CMB2/blob/master/CONTRIBUTING.md) doc for more details.
@@ -72,6 +78,7 @@ All contributions welcome. If you would like to submit a pull request, please ch
 A complete list of all our awesome contributors found here: [github.com/WebDevStudios/CMB2/graphs/contributors](https://github.com/WebDevStudios/CMB2/graphs/contributors)
 
 ## Links
+* [Project Homepage](http://cmb2.io)
 * [Github project page](https://github.com/webdevstudios/CMB2)
 * [Documentation (GitHub wiki)](https://github.com/webdevstudios/CMB2/wiki)
 
@@ -92,19 +99,30 @@ If including the library in your plugin or theme:
 2. Edit to only include the fields you need and rename the functions (CMB2 directory should be left unedited in order to easily update the library).
 4. Profit.
 
-## 2.0.2
+## Most Recent Changes
 
-### Enhancements
+### 2.0.8
 
-* Use the more appropriate `add_meta_boxes` hook for hooking in metaboxes to post-edit screen. Thanks [@inspiraaz](https://github.com/inspiraaz) for reporting. ([#161](https://github.com/WebDevStudios/CMB2/issues/161))
-* Add a `row_classes` field param which allows you to add additional classes to the cmb-row wrap. This parameter can take a string, or array, or can take a callback that returns a string or array. The callback will receive `$field_args` as the first argument, and the CMB2_Field `$field` object as the second argument. Reported/requested in [#68](https://github.com/WebDevStudios/CMB2/issues/68).
-* New constant, `CMB2_LOADED`, which you can use to check if CMB2 is loaded for your plugins/themes with CMB2 dependency.
-* New hooks, [`cmb2_init_before_hookup` and `cmb2_after_init`](https://github.com/WebDevStudios/CMB2-Snippet-Library/blob/master/filters-and-actions).
-* New API for adding metaboxes and fields, demonstrated in [`example-functions.php`](https://github.com/WebDevStudios/CMB2/blob/master/example-functions.php). In keeping with backwards-compatibility, the `cmb2_meta_boxes` filter method will still work, but is not recommended. New API includes `new_cmb2_box` helper function to generate a new metabox, and returns a `$cmb` object to add new fields (via the `CMB2::add_field()` and `CMB2::add_group_field()` methods).
-* New CMB2 method, [`CMB2::remove_field()`](https://github.com/WebDevStudios/CMB2-Snippet-Library/blob/master/filters-and-actions/cmb2_init_%24cmb_id-remove-field.php).
-* New CMB2_Boxes method, [`CMB2_Boxes::remove()`](https://github.com/WebDevStudios/CMB2-Snippet-Library/blob/master/filters-and-actions/cmb2_init_before_hookup-remove-cmb2-metabox.php).
-* When clicking on a file/image in the `file`, or `file_list` type, the media modal will open with that image selected. Props [johnsonpaul1014](https://github.com/johnsonpaul1014), ([#120](https://github.com/WebDevStudios/CMB2/pull/120)).
+#### Bug Fixes
 
+* Fix color-picker field not enqueueing the colorpicker script. ([#333](https://github.com/WebDevStudios/CMB2/issues/333))
+
+### 2.0.7
+
+#### Enhancements
+
+* Ability to use non-repeatable group fields by setting the `'repeatable'` field param to `false` when registering a group field type. Props [marcusbattle](https://github.com/marcusbattle), ([#159](https://github.com/WebDevStudios/CMB2/pull/159)).
+* Add and enqeueue a front-end specific CSS file which adds additional styles which are typically covered by wp-admin css. ([#311](https://github.com/WebDevStudios/CMB2/issues/311))
+* Better handling of the CMB2 javascript (and CSS) required dependencies array. Dependencies are now only added conditionally based on the field types that are actually visible. ([#136](https://github.com/WebDevStudios/CMB2/issues/136))
+* **THIS IS A BREAKING CHANGE:** The `group` field type's `'show_on_cb'` property now receives the `CMB2_Field` object instance as an argument instead of the `CMB2` instance. If you're using the `'show_on_cb'` property for a `group` field, please adjust accordingly. _note: you can still retrieve the `CMB2` instance via the `cmb2_get_metabox` helper function._
+* New dynamic hook, `"cmb2_save_{$object_type}_fields_{$this->cmb_id}"`, to complement the existing `"cmb2_save_{$object_type}_fields"` hook.
+* German translation provided by Friedhelm Jost.
+
+#### Bug Fixes
+
+* Fix incorrect repeatable group title number. ([#310](https://github.com/WebDevStudios/CMB2/pull/310))
+* Fix obscure bug which prevented group field arguments from being passed to the sub-fields (like `show_names` and `context`).
+* Fixed occasional issue when adding a group row, the previous row's content would be cloned. ([#257](https://github.com/WebDevStudios/CMB2/pull/257))
 
 **[View complete changelog](https://github.com/WebDevStudios/CMB2/blob/master/CHANGELOG.md)**
 

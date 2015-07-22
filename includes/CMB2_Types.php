@@ -1,13 +1,16 @@
 <?php
-
 /**
- * CMB field types
+ * CMB field type objects
  *
- * @todo test taxonomy methods with non-post objects
- * @todo test all methods with non-post objects
  * @todo Date/Time fields should store date format as data attribute for JS
  *
  * @since  1.0.0
+ *
+ * @category  WordPress_Plugin
+ * @package   CMB2
+ * @author    WebDevStudios
+ * @license   GPL-2.0+
+ * @link      http://webdevstudios.com
  */
 class CMB2_Types {
 
@@ -150,9 +153,10 @@ class CMB2_Types {
 	public function is_valid_img_ext( $file ) {
 		$file_ext = $this->get_file_ext( $file );
 
-		$is_valid_types = (array) apply_filters( 'cmb2_valid_img_types', array( 'jpg', 'jpeg', 'png', 'gif', 'ico', 'icon' ) );
+		$is_valid_types = apply_filters( 'cmb2_valid_img_types', array( 'jpg', 'jpeg', 'png', 'gif', 'ico', 'icon' ) );
+		$is_valid = $file_ext && in_array( $file_ext, (array) $is_valid_types );
 
-		return ( $file_ext && in_array( $file_ext, $is_valid_types ) );
+		return (bool) apply_filters( 'cmb2_' . $this->field->id() . '_is_valid_img_ext', $is_valid, $file, $file_ext );
 	}
 
 	/**
@@ -204,7 +208,13 @@ class CMB2_Types {
 			: $this->field->args( 'default' );
 
 		$concatenated_items = ''; $i = 1;
-		foreach ( (array) $this->field->options() as $opt_value => $opt_label ) {
+
+		$options = array();
+		if ( $option_none = $this->field->args( 'show_option_none' ) ) {
+			$options[ '' ] = $option_none;
+		}
+		$options = $options + (array) $this->field->options();
+		foreach ( $options as $opt_value => $opt_label ) {
 
 			// Clone args & modify for just this item
 			$a = $args;
@@ -500,6 +510,8 @@ class CMB2_Types {
 			'desc'  => $this->_desc(),
 		) );
 
+		CMB2_JS::add_dependencies( array( 'jquery-ui-core', 'jquery-ui-datepicker' ) );
+
 		return $this->input( $args );
 	}
 
@@ -514,6 +526,8 @@ class CMB2_Types {
 			'value' => $this->field->get_timestamp_format( 'time_format' ),
 			'desc' => $this->_desc(),
 		) );
+
+		CMB2_JS::add_dependencies( array( 'jquery-ui-core', 'jquery-ui-datepicker', 'jquery-ui-datetimepicker' ) );
 
 		return $this->input( $args );
 	}
@@ -552,6 +566,8 @@ class CMB2_Types {
 			'value' => $has_good_value ? $this->field->get_timestamp_format( 'time_format', $args['value'] ) : '',
 			'desc'  => $args['desc'],
 		) );
+
+		CMB2_JS::add_dependencies( array( 'jquery-ui-core', 'jquery-ui-datepicker', 'jquery-ui-datetimepicker' ) );
 
 		return $this->input( $date_args ) . "\n" . $this->input( $time_args );
 	}
@@ -616,6 +632,9 @@ class CMB2_Types {
 			// Value doesn't match #123abc, so sanitize to just #
 			$meta_value = '#';
 		}
+
+		wp_enqueue_style( 'wp-color-picker' );
+		CMB2_JS::add_dependencies( array( 'wp-color-picker' ) );
 
 		return $this->input( array( 'class' => 'cmb2-colorpicker cmb2-text-small', 'value' => $meta_value ) );
 	}
@@ -698,7 +717,7 @@ class CMB2_Types {
 	}
 
 	public function multicheck_inline() {
-		$this->multicheck( 'multicheck_inline' );
+		return $this->multicheck( 'multicheck_inline' );
 	}
 
 	public function checkbox() {
@@ -820,12 +839,14 @@ class CMB2_Types {
 		$meta_value = $this->field->escaped_value();
 		$name       = $this->_name();
 		$img_size   = $this->field->args( 'preview_size' );
+		$query_args = $this->field->args( 'query_args' );
 
 		echo $this->input( array(
 			'type'  => 'hidden',
 			'class' => 'cmb2-upload-file cmb2-upload-list',
 			'size'  => 45, 'desc'  => '', 'value'  => '',
 			'data-previewsize' => is_array( $img_size ) ? sprintf( '[%s]', implode( ',', $img_size ) ) : 50,
+			'data-queryargs'   => ! empty( $query_args ) ? json_encode( $query_args ) : '',
 		) ),
 		$this->input( array(
 			'type'  => 'button',
@@ -870,12 +891,15 @@ class CMB2_Types {
 		}
 
 		echo '</ul>';
+
+		CMB2_JS::add_dependencies( 'media-editor' );
 	}
 
 	public function file() {
 		$meta_value = $this->field->escaped_value();
 		$options    = (array) $this->field->options();
 		$img_size   = $this->field->args( 'preview_size' );
+		$query_args = $this->field->args( 'query_args' );
 
 		// if options array and 'url' => false, then hide the url field
 		$input_type = array_key_exists( 'url', $options ) && false === $options['url'] ? 'hidden' : 'text';
@@ -886,13 +910,16 @@ class CMB2_Types {
 			'size'  => 45,
 			'desc'  => '',
 			'data-previewsize' => is_array( $img_size ) ? '[' . implode( ',', $img_size ) . ']' : 350,
+			'data-queryargs'   => ! empty( $query_args ) ? json_encode( $query_args ) : '',
 		) );
 
 		printf( '<input class="cmb2-upload-button button" type="button" value="%s" />', esc_attr( $this->_text( 'add_upload_file_text', __( 'Add or Upload File', 'cmb2' ) ) ) );
 
 		$this->_desc( true, true );
 
-		$cached_id = $this->_id();
+		// If we're looking at a file in a group, we need to get the non-prefixed id
+		$cached_id = $this->field->group ? $this->field->args( '_id' ) : $this->_id();
+
 		// Reset field args for attachment ID
 		$args = $this->field->args();
 		$args['id'] = $cached_id . '_id';
@@ -949,6 +976,8 @@ class CMB2_Types {
 				}
 			}
 		echo '</div>';
+
+		CMB2_JS::add_dependencies( 'media-editor' );
 	}
 
 	/**
